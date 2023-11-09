@@ -1,12 +1,11 @@
 import { Provider } from "react-redux";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Header from "./components/header/Header";
-import Home from "./pages/Home";
-import Favs from "./pages/Favs";
 import store from "./store/store";
 import { useState } from "react";
 import Footer from "./components/Footer";
+import AppRoutes from "./AppRoutes";
 
 const App = () => {
   const [selectedTheme, setSelectedTheme] = useState(
@@ -21,14 +20,10 @@ const App = () => {
             selectedTheme={selectedTheme}
             setSelectedTheme={setSelectedTheme}
           />
-          <div className="content flex-grow">
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="/:city" element={<Home />} />  
-              <Route path="/favs" element={<Favs />} />
-            </Routes>
+          <div className="flex-grow">
+            <AppRoutes />
           </div>
-          <Footer/>
+          <Footer />
         </BrowserRouter>
       </div>
     </Provider>
@@ -36,4 +31,3 @@ const App = () => {
 };
 
 export default App;
-

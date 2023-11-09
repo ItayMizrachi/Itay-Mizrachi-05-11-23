@@ -1,35 +1,19 @@
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCityData, setCityError } from "../../features/cities/citySlice";
-import useWeatherApi from "../../../hooks/useWeatherApi";
 import { useNavigate, useLocation } from "react-router-dom";
+import useWeatherApi from "../../../hooks/useWeatherApi";
+import useSearchCity from "../../../hooks/useSearchCity";
+import { useEffect } from "react";
 
 const Search = () => {
   const location = useLocation();
   const city = location.pathname.substring(1); // remove the leading slash
   const dispatch = useDispatch();
   const { fetchCity } = useWeatherApi();
-  const [searchCity, setSearchCity] = useState("");
-  const nav = useNavigate();
-
-  const search = async (cityName) => {
-    try {
-      const data = await fetchCity(cityName);
-      dispatch(setCityData(data));
-      nav(`/${cityName}`);
-    } catch (error) {
-      dispatch(setCityError(error.message));
-      console.error("Error fetching city:", error);
-    }
-    setSearchCity("");
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      search(searchCity);
-    }
-  };
+  const { searchCity, setSearchCity, search, handleKeyPress } = useSearchCity(
+    fetchCity,
+    dispatch
+  );
 
   useEffect(() => {
     if (city) {

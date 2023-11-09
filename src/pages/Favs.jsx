@@ -1,21 +1,13 @@
-import { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Favs = () => {
-  const [savedCities, setSavedCities] = useState([]);
-
-  
-  // Load the saved cities from local storage when the component mounts
-  useEffect(() => {
-    const cities = JSON.parse(localStorage.getItem("cities")) || [];
-    setSavedCities(cities);
-  }, []);
+  const [savedCities, setSavedCities] = useLocalStorage("cities", []);
 
   // Function to remove a city from the saved cities
   const removeFromFavorites = (cityKey) => {
     const newSavedCities = savedCities.filter((city) => city.Key !== cityKey);
-    localStorage.setItem("cities", JSON.stringify(newSavedCities));
     setSavedCities(newSavedCities);
   };
 

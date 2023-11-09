@@ -6,33 +6,32 @@ import {
 } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const Now = ({ currentWeather }) => {
   const cityData = useSelector(selectCityData);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [savedCities, setSavedCities] = useLocalStorage("cities", []);
 
     // Check if the current city is in the saved cities in local storage
-  useEffect(() => {
-    const savedCities = JSON.parse(localStorage.getItem("cities")) || [];
-    setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
-  }, [cityData]);
+    useEffect(() => {
+      setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
+    }, [cityData, savedCities]);
+  
+    // Handle bookmark click - add/remove city from saved cities in local storage
+    const handleBookmarkClick = () => {
+      if (isBookmarked) {
+        const newSavedCities = savedCities.filter(
+          (city) => city.Key !== cityData[0]?.Key
+        );
+        setSavedCities(newSavedCities);
+      } else {
+        setSavedCities([...savedCities, { ...cityData[0], weather: currentWeather }]);
+      }
+      setIsBookmarked(!isBookmarked);
+    };
 
-   // Handle bookmark click - add/remove city from saved cities in local storage
-  const handleBookmarkClick = () => {
-    const savedCities = JSON.parse(localStorage.getItem("cities")) || [];
-    if (isBookmarked) {
-      const newSavedCities = savedCities.filter(
-        (city) => city.Key !== cityData[0]?.Key
-      );
-      localStorage.setItem("cities", JSON.stringify(newSavedCities));
-    } else {
-      savedCities.push({ ...cityData[0], weather: currentWeather });
-      localStorage.setItem("cities", JSON.stringify(savedCities));
-    }
-    setIsBookmarked(!isBookmarked);
-  };
-
-  return (
+   return (
     <div className="grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 mt-4 shadow-xl">
       <div className="flex justify-between items-center">
         <p className="font-semibold text-xl"> {cityData[0]?.EnglishName}</p>
