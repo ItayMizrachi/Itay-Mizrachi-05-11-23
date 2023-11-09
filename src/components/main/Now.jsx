@@ -9,7 +9,11 @@ import { selectCityData } from "../../features/cities/citySlice";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const Now = ({ currentWeather }) => {
-  const cityData = useSelector(selectCityData);
+  let cityData = useSelector(selectCityData);
+  // Ensure cityData is always an array
+  if (!Array.isArray(cityData)) {
+    cityData = [cityData];
+  }
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [savedCities, setSavedCities] = useLocalStorage("cities", []);
 

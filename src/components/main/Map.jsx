@@ -5,23 +5,27 @@ import { useEffect, useState } from "react";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 
 const Map = () => {
-  const cityData = useSelector(selectCityData);
+  let cityData = useSelector(selectCityData);
+  // Ensure cityData is always an array
+  if (!Array.isArray(cityData)) {
+    cityData = [cityData];
+  }
   const [viewport, setViewport] = useState({
     longitude: cityData[0]?.GeoPosition?.Longitude,
     latitude: cityData[0]?.GeoPosition?.Latitude,
     zoom: 10,
   });
 
+  const [fetchedData, setFetchedData] = useState(null);
+
   useEffect(() => {
-    if (
-      cityData[0]?.GeoPosition?.Longitude &&
-      cityData[0]?.GeoPosition?.Latitude
-    ) {
-      setViewport({
-        ...viewport,
+    if (cityData && cityData.length > 0 && cityData[0] && cityData[0].GeoPosition && JSON.stringify(cityData[0].GeoPosition) !== JSON.stringify(fetchedData)) {
+      setViewport((prevViewport) => ({
+        ...prevViewport,
         longitude: cityData[0].GeoPosition.Longitude,
         latitude: cityData[0].GeoPosition.Latitude,
-      });
+      }));
+      setFetchedData(cityData[0].GeoPosition);
     }
   }, [cityData]);
   

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
 import Forecast from "./Forecast";
@@ -8,7 +8,13 @@ import Map from "./Map";
 import useWeatherApi from "../../../hooks/useWeatherApi";
 
 const Main = () => {
-  const cityData = useSelector(selectCityData);
+  let cityData = useSelector(selectCityData);
+  const [fetchedKey, setFetchedKey] = useState(null);
+  // Ensure cityData is always an array
+  if (!Array.isArray(cityData)) {
+    cityData = [cityData];
+  }
+
   const {
     fetchWeatherData,
     fetchForecast,
@@ -18,12 +24,18 @@ const Main = () => {
     hourlyData,
   } = useWeatherApi();
 
-    // Fetch weather data when city data changes
   useEffect(() => {
-    if (cityData && cityData.length > 0 && cityData[0].Key) {
+    if (
+      cityData &&
+      cityData.length > 0 &&
+      cityData[0] &&
+      cityData[0].Key &&
+      cityData[0].Key !== fetchedKey
+    ) {
       fetchWeatherData(cityData[0].Key);
       fetchForecast(cityData[0].Key);
       fetchHourlyData(cityData[0].Key);
+      setFetchedKey(cityData[0].Key);
     }
   }, [cityData]);
 

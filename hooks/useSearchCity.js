@@ -15,6 +15,21 @@ const useSearchCity = (fetchCity, dispatch) => {
     setSearchCity("");
   };
 
+//   const search = (city) => {
+//     return new Promise((resolve, reject) => {
+//       fetchCity(city)
+//         .then((data) => {
+//           dispatch(setCityData(data));
+//           resolve();
+//         })
+//         .catch((error) => {
+//           dispatch(setCityError(error.message));
+//           console.error("Error fetching city:", error);
+//           reject(error);
+//         });
+//     });
+//   };
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();

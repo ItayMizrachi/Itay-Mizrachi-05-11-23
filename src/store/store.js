@@ -1,11 +1,14 @@
-// store.js
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cityReducer from "../features/cities/citySlice";
+import userLocationReducer from "../features/userLocation/userLocationSlice";
+
+const rootReducer = combineReducers({
+  city: cityReducer,
+  userLocation: userLocationReducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    city: cityReducer,
-  },
+  reducer: rootReducer,
 });
 
 export default store;

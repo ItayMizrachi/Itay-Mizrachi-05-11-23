@@ -45,7 +45,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="Search City.."
-        className="input w-full max-w-xs border border-base-300"
+        className="input w-full max-w-xs border border-base-300 "
         value={searchCity}
         onChange={(e) => setSearchCity(e.target.value)}
         onKeyDown={handleKeyPress}
