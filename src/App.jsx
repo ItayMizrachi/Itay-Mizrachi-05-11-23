@@ -13,44 +13,11 @@ const App = () => {
     localStorage.getItem("selectedTheme") || "dracula"
   );
 
-  const themes = [
-    "light",
-    "dark",
-    "synthwave",
-    "dracula",
-    "halloween",
-    "coffee",
-    "aqua",
-    "luxury",
-    "retro",
-    "valentine",
-    "night",
-    "forest",
-    "business",
-    "black",
-    "cyberpunk",
-    "garden",
-    "cupcake",
-    "bumblebee",
-    "lofi",
-    "emerald",
-    "corporate",
-    "pastel",
-    "fantasy",
-    "wireframe",
-    "cmyk",
-    "autumn",
-    "acid",
-    "lemonade",
-    "winter",
-  ];
-
   return (
     <Provider store={store}>
       <div className="min-h-screen flex flex-col" data-theme={selectedTheme}>
         <BrowserRouter>
           <Header
-            themes={themes}
             selectedTheme={selectedTheme}
             setSelectedTheme={setSelectedTheme}
           />

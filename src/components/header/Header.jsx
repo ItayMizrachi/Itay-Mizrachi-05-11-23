@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Drawer from "./Drawer";
 import Search from "./Search";
 import { HomeIcon, BookmarkIcon } from "@heroicons/react/24/solid";
+import themes from "../../../themes.json";
 
-const Header = ({ selectedTheme, setSelectedTheme, themes }) => {
-
+const Header = ({ selectedTheme, setSelectedTheme }) => {
   useEffect(() => {
     localStorage.setItem("selectedTheme", selectedTheme);
   }, [selectedTheme]);
@@ -15,7 +15,10 @@ const Header = ({ selectedTheme, setSelectedTheme, themes }) => {
   };
 
   return (
-    <header data-theme={selectedTheme} className=" bg-base-200 sticky top-0 z-10 w-full border-b border-base-300">
+    <header
+      data-theme={selectedTheme}
+      className=" bg-base-200 sticky top-0 z-10 w-full border-b border-base-300"
+    >
       <div className="h-20  grid grid-cols-2 md:grid-cols-3 items-center my-container  mx-auto px-4 ">
         {/* Left */}
         <div className="font-semibold text-sm md:text-lg lg:text-xl hidden md:block">
@@ -59,11 +62,11 @@ const Header = ({ selectedTheme, setSelectedTheme, themes }) => {
         {/* Right LG SCREEN */}
 
         {/* Right SM Screen */}
-          <Drawer
-            handleThemeChange={handleThemeChange}
-            selectedTheme={selectedTheme}
-            themes={themes}
-          />
+        <Drawer
+          handleThemeChange={handleThemeChange}
+          selectedTheme={selectedTheme}
+          themes={themes}
+        />
         {/* Right SM Screen */}
       </div>
     </header>
