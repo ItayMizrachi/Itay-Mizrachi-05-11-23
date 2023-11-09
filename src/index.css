@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+  .my-container {
+    @apply max-w-7xl;
+  }
+
+  .nav-btn {
+    @apply hidden h-6 transition-all duration-150 ease-out cursor-pointer lg:inline-flex hover:scale-125;
+  }
+
+  .drawer-btn {
+    @apply p-3 hover:bg-base-100 rounded-md transition duration-150 ease-out;
+  }
+}
