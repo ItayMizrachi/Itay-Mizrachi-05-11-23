@@ -16,14 +16,14 @@ const Favs = () => {
       <h1 className="font-semibold text-3xl my-4 ml-6 md:ml-16">
         Saved Cities
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center items-center">
+      <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center items-center">
         {savedCities.length === 0 ? (
           <p className="ml-6 md:ml-14">You haven't saved any cities yet.</p>
         ) : (
           savedCities.map((city) => (
             <div
               key={city.Key}
-              className="w-52 m-2 pt-6 flex-none bg-base-200 rounded-xl relative my-3 border border-base-300 shadow-lg"
+              className="w-52 m-1 pt-6 flex-none bg-base-200 rounded-xl relative my-3 border border-base-300 shadow-lg"
             >
               <button
                 onClick={() => removeFromFavorites(city.Key)}
@@ -56,7 +56,7 @@ const Favs = () => {
             </div>
           ))
         )}
-      </div>
+      </main>
     </div>
   );
 };
