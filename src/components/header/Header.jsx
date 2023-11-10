@@ -1,76 +1,14 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Drawer from "./Drawer";
 import Search from "./Search";
 import { HomeIcon, BookmarkIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import themes from "../../../themes.json";
-import { useDispatch, useSelector } from "react-redux";
-import useGeoLocation from "../../../hooks/useGeoLocation";
-import { setLocation } from "../../features/userLocation/userLocationSlice";
-import { selectCityData, setCityData } from "../../features/cities/citySlice";
+import useLocationLogic from "../../../hooks/useLocationLogic";
+import useThemeLogic from "../../../hooks/useThemeLogic";
 
 const Header = ({ selectedTheme, setSelectedTheme }) => {
-  const dispatch = useDispatch();
-  const location = useGeoLocation();
-  const cityData = useSelector(selectCityData); 
-
-  useEffect(() => {
-    localStorage.setItem("selectedTheme", selectedTheme);
-  }, [selectedTheme]);
-
-  const handleThemeChange = (event) => {
-    setSelectedTheme(event.target.value);
-  };
-
-  const fetchLocationData = async (lat, lon) => {
-    try {
-      const response = await fetch(
-        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${import.meta.env.VITE_APIKEY3}&q=${lat},${lon}`
-      );
-
-      if (!response.ok) {
-        throw new Error("Error fetching location data");
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error); // Log any errors
-    }
-  };
-
-  const handleLocationClick2 = async () => {
-    if (location.loaded && !location.error) {
-      try {
-        const data = await fetchLocationData(
-          location.coordinates.lat,
-          location.coordinates.lng
-        );
-        dispatch(setLocation(location.coordinates));
-        dispatch(setCityData(data)); // Dispatch setCityData with the location data
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      }
-    }
-  };
-
-  const handleLocationClick = async () => {
-    if (location.loaded && !location.error) {
-      try {
-        const data = await fetchLocationData(
-          location.coordinates.lat,
-          location.coordinates.lng
-        );
-        dispatch(setLocation(location.coordinates));
-        // Only dispatch setCityData if the new data is different from the current cityData
-        if (JSON.stringify(data) !== JSON.stringify(cityData)) {
-          dispatch(setCityData(data));
-        }
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      }
-    }
-  };
+  const { handleLocationClick } = useLocationLogic();
+  const { handleThemeChange } = useThemeLogic(selectedTheme, setSelectedTheme);
 
   return (
     <header

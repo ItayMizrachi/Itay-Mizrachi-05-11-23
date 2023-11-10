@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setCityData, setCityError } from "../../features/cities/citySlice";
-import { useNavigate, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import useWeatherApi from "../../../hooks/useWeatherApi";
 import useSearchCity from "../../../hooks/useSearchCity";
 import { useEffect } from "react";
@@ -24,15 +24,17 @@ const Search = () => {
   useEffect(() => {
     const fetchInitialCity = async () => {
       try {
-        const data = await fetchCity("Tel Aviv");
-        dispatch(setCityData(data));
+        if (!city) { // Only fetch initial city data if there's no city in the URL
+          const data = await fetchCity("Tel Aviv");
+          dispatch(setCityData(data));
+        }
       } catch (error) {
         dispatch(setCityError(error.message));
         console.error("Error fetching city:", error);
       }
     };
     fetchInitialCity();
-  }, []);
+  }, [city]); // Add city as a dependency
 
   return (
     <form
@@ -45,7 +47,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="Search City.."
-        className="input w-full max-w-xs border border-base-300 "
+        className="input w-full max-w-xs border border-base-300"
         value={searchCity}
         onChange={(e) => setSearchCity(e.target.value)}
         onKeyDown={handleKeyPress}
