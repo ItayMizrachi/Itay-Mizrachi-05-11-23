@@ -48,7 +48,7 @@ const Main = () => {
       <section className="col-span-full md:col-span-3">
         <Now currentWeather={currentWeather} />
         <h2 className="font-semibold text-xl my-4">5 Days Forecast</h2>
-        <div className="bg-base-200 rounded-xl shadow-xl border border-base-300">
+        <div className="bg-base-200 rounded-xl shadow-md border border-base-300">
           {forecast &&
             forecast.DailyForecasts.map((day, index) => (
               <div key={index} className="">

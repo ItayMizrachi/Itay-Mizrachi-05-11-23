@@ -8,7 +8,7 @@ const LaterToday = ({ hourlyData }) => {
           hourlyData.map((item, index) => (
             <div
               key={index}
-              className="w-52 m-2 pt-6 hover:shadow-xl transition duration-150 ease-out border border-base-300 shadow-lg flex-none bg-base-200 rounded-xl"
+              className="w-52 m-2 pt-6 hover:shadow-lg shadow-md transition duration-150 ease-out border border-base-300  flex-none bg-base-200 rounded-xl"
             >
               <div className="card bordered">
                 <div className="w-16 h-16 mx-auto">

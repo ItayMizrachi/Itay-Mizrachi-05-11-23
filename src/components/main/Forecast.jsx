@@ -3,7 +3,7 @@ const Forecast = ({ day }) => {
   const celsius = ((fahrenheit - 32) * 5) / 9;
 
   return (
-    <div className="p-3 px-4  flex justify-between hover:bg-base-100/40">
+    <div className="p-3 px-4 flex justify-between hover:bg-base-100/40">
       <div className="flex">
         <div className="w-8 h-8 mr-1">
           <img

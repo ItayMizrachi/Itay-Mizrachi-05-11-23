@@ -5,6 +5,7 @@ const useWeatherApi = () => {
   const [currentWeather, setCurrentWeather] = useState();
   const [forecast, setForecast] = useState();
   const [hourlyData, setHourlyData] = useState();
+  const [loadingWeather, setLoadingWeather] = useState(false);
 
   const fetchCity = async (city) => {
     try {
@@ -18,12 +19,15 @@ const useWeatherApi = () => {
   };
 
   const fetchWeatherData = async (cityKey) => {
+    setLoadingWeather(true)
     try {
       const response = await axios.get(
         `http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
       );
       setCurrentWeather(response.data[0]);
+      setLoadingWeather(false);
     } catch (error) {
+      setLoadingWeather(false);
       throw error;
     }
   };
@@ -58,6 +62,7 @@ const useWeatherApi = () => {
     currentWeather,
     forecast,
     hourlyData,
+    loadingWeather,
   };
 };
 

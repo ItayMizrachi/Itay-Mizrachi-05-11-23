@@ -36,7 +36,7 @@ const Now = ({ currentWeather }) => {
     };
 
    return (
-    <div className="grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 mt-4 shadow-xl">
+    <div className="grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 mt-4 shadow-md">
       <div className="flex justify-between items-center">
         <p className="font-semibold text-xl"> {cityData[0]?.EnglishName}</p>
       </div>
