@@ -1,7 +1,7 @@
 const LaterToday = ({ hourlyData }) => {
     
   return (
-    <div className="md:mx-2 mb-4 mt-5 pl-2 max-w-xs sm:max-w-2xl md:max-w-full mx-auto ">
+    <div className="md:mx-2 mb-4 mt-5  max-w-xs sm:max-w-2xl md:max-w-full mx-auto ">
       <h2 className="font-semibold text-xl my-2 ml-2">Today At</h2>
       <div className="overflow-x-auto scrollbar-hide flex">
         {hourlyData &&

@@ -1,8 +1,11 @@
-import ReactMapGL, { Marker } from "react-map-gl";
-import { selectCityData } from "../../features/cities/citySlice";
+import React from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Icon, divIcon, point } from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import customIconUrl from "../../../public/images/pin-icon.png";
+import "leaflet/dist/leaflet.css";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { MapPinIcon } from "@heroicons/react/24/solid";
+import { selectCityData } from "../../features/cities/citySlice";
 
 const Map = () => {
   let cityData = useSelector(selectCityData);
@@ -10,51 +13,46 @@ const Map = () => {
   if (!Array.isArray(cityData)) {
     cityData = [cityData];
   }
-  const [viewport, setViewport] = useState({
-    longitude: cityData[0]?.GeoPosition?.Longitude,
-    latitude: cityData[0]?.GeoPosition?.Latitude,
-    zoom: 10,
+  console.log(cityData);
+  const position = cityData[0]?.GeoPosition ? [cityData[0].GeoPosition.Latitude, cityData[0].GeoPosition.Longitude] : [51.505, -0.09];
+
+  const customIcon = new Icon({
+    iconUrl: customIconUrl,
+    iconSize: [38, 38], // size of the icon
   });
 
-  const [fetchedData, setFetchedData] = useState(null);
+  // custom cluster icon
+  const createClusterCustomIcon = function (cluster) {
+    return new divIcon({
+      html: `<span class="cluster-icon">${cluster.getChildCount()}</span>`,
+      className: "custom-marker-cluster",
+      iconSize: point(33, 33, true),
+    });
+  };
 
-  useEffect(() => {
-    if (cityData && cityData.length > 0 && cityData[0] && cityData[0].GeoPosition && JSON.stringify(cityData[0].GeoPosition) !== JSON.stringify(fetchedData)) {
-      setViewport((prevViewport) => ({
-        ...prevViewport,
-        longitude: cityData[0].GeoPosition.Longitude,
-        latitude: cityData[0].GeoPosition.Latitude,
-      }));
-      setFetchedData(cityData[0].GeoPosition);
-    }
-  }, [cityData]);
-  
-  //TODO - ADD Marker ON the MAP 
   return (
-    <div className="p-2 md:ml-4 ml-2 hidden md:block w-full h-[300px]">
-      <ReactMapGL
-        {...viewport}
-        onViewportChange={(nextViewport) => setViewport(nextViewport)}
-        attributionControl={false}
-        style={{
-          width: "100%",
-          height: "100%",
-          marginLeft: "auto",
-          marginTop: 11,
-          borderRadius: "32px ",
-        }}
-        mapStyle="mapbox://styles/itaymiz98/clomyvtrr00bm01pbb5m59c3z"
-        mapboxAccessToken="pk.eyJ1IjoiaXRheW1pejk4IiwiYSI6ImNsbXQ2MTZuaTAyN28yanBlcXhqdG85ZzEifQ.9m2ipPtFzr6zgrvfIlvjBg"
-      >
-        {/* <Marker
-          longitude={viewport.longitude}
-          latitude={viewport.latitude}
+    <div>
+      <MapContainer key={position.toString()} center={position} zoom={13}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        <MarkerClusterGroup
+          chunkedLoading
+          iconCreateFunction={createClusterCustomIcon}
         >
-            <MapPinIcon className="w-5 h-5 text-red-500" />
-        </Marker> */}
-      </ReactMapGL>
+          {/* Create a single marker */}
+          <Marker 
+            position={position} 
+            icon={customIcon}
+          >
+            <Popup>{cityData[0]?.EnglishName},{cityData[0].Country.EnglishName}</Popup>
+          </Marker>
+        </MarkerClusterGroup>
+      </MapContainer>
     </div>
   );
 };
 
-export default Map;     
+export default Map;

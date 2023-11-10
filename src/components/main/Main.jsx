@@ -4,8 +4,8 @@ import { selectCityData } from "../../features/cities/citySlice";
 import Forecast from "./Forecast";
 import Now from "./Now";
 import LaterToday from "./LaterToday";
-import Map from "./Map";
 import useWeatherApi from "../../../hooks/useWeatherApi";
+import Map from "./Map";
 
 const Main = () => {
   let cityData = useSelector(selectCityData);
@@ -44,8 +44,8 @@ const Main = () => {
   }
 
   return (
-    <main className="grid md:grid-cols-10 mt-4">
-      <section className="col-span-full md:col-span-3">
+    <main className="grid md:grid-cols-10 my-8">
+      <section className="col-span-full md:col-span-3 ">
         <Now currentWeather={currentWeather} />
         <h2 className="font-semibold text-xl my-4">5 Days Forecast</h2>
         <div className="bg-base-200 rounded-xl shadow-md border border-base-300">
@@ -57,7 +57,7 @@ const Main = () => {
             ))}
         </div>
       </section>
-      <section className="col-span-full md:col-span-7">
+      <section className="col-span-full md:col-span-7 md:ml-8 mt-8 md:mt-0 ">
         <Map />
         <LaterToday hourlyData={hourlyData} />
       </section>

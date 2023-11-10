@@ -13,7 +13,7 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
   return (
     <header
       data-theme={selectedTheme}
-      className=" bg-base-200 sticky top-0 z-10 w-full border-b border-base-300"
+      className=" bg-base-200 sticky top-0 z-50 w-full border-b border-base-300"
     >
       <div className="h-20  grid grid-cols-2 md:grid-cols-3 items-center my-container  mx-auto px-4 ">
         {/* Left */}
