@@ -34,7 +34,7 @@ const Search = () => {
       }
     };
     fetchInitialCity();
-  }, [city]); // Add city as a dependency
+  }, [city]); 
 
   return (
     <form

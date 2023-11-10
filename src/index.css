@@ -8,7 +8,11 @@
   }
 
   .nav-btn {
-    @apply hidden h-6 transition-all duration-150 ease-out cursor-pointer lg:inline-flex hover:scale-125;
+    @apply hidden h-6 w-6 transition-all duration-150 ease-out cursor-pointer lg:inline-flex hover:scale-125;
+  }
+
+  .reg-btn {
+    @apply h-6 w-6 transition-all duration-150 ease-out cursor-pointer hover:scale-125
   }
 
   .drawer-btn {

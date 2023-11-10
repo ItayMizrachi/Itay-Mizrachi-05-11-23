@@ -31,23 +31,21 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
           <ul className=" flex items-center space-x-3">
             {/* Navbar menu content here */}
             <li>
-              <button
-                onClick={handleLocationClick}
-                className="btn btn-primary lowercase"
-              >
-                My Location
-                <MapPinIcon className="w-5 h-5 text-red-500" />
-              </button>
-            </li>
-            <li>
               <Link to={"/telaviv"}>
-                <HomeIcon className="nav-btn" />
+                <HomeIcon title="Home" className="nav-btn" />
               </Link>
             </li>
             <li>
               <Link to={"/favs"}>
-                <BookmarkIcon className="nav-btn text-red-500" />
+                <BookmarkIcon title="Favorite Cities" className="nav-btn " />
               </Link>
+            </li>
+            <li>
+              <MapPinIcon
+                title="My Location Weather"
+                onClick={handleLocationClick}
+                className=" text-red-500 nav-btn"
+              />
             </li>
             <li>
               <select

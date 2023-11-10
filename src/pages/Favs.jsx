@@ -1,9 +1,11 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import DeleteFavModal from "../components/modals/DeleteFavModal";
 
 const Favs = () => {
   const [savedCities, setSavedCities] = useLocalStorage("cities", []);
+  console.log(savedCities);
 
   // Function to remove a city from the saved cities
   const removeFromFavorites = (cityKey) => {
@@ -25,13 +27,10 @@ const Favs = () => {
               key={city.Key}
               className="w-52 m-1 pt-6 flex-none bg-base-200 rounded-xl relative my-3 border border-base-300 shadow-lg"
             >
-              <button
-                onClick={() => removeFromFavorites(city.Key)}
-                className="absolute top-2 right-2"
-                title="Remove from favorites"
-              >
-                <XMarkIcon className="h-6 w-6 ml-auto cursor-pointer ease-out hover:text-gray-400 transform active:scale-90 transition-colors duration-200" />
-              </button>
+              <DeleteFavModal
+                cityToDelete={city.Key}
+                removeFromFavorites={removeFromFavorites}
+              />
               <div className="card ">
                 <div className="w-16 h-16 mx-auto">
                   <img

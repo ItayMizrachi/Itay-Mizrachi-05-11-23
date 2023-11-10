@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 
+// Custom hook to get user's geolocation
 const useGeoLocation = () => {
+  // State to store location data
   const [location, setLocation] = useState({
     loaded: false,
     coordinates: { lat: "", lng: "" },
   });
 
+  // Callback for successful geolocation
   const onSuccess = (location) => {
     setLocation({
       loaded: true,
       coordinates: {
+        // Set latitude and longitude
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       },
@@ -23,7 +27,9 @@ const useGeoLocation = () => {
     });
   };
 
+  // Effect to get geolocation on component mount
   useEffect(() => {
+    // Check if geolocation is available
     if (!("geolocation" in navigator)) {
       onError({
         code: 0,
@@ -31,6 +37,7 @@ const useGeoLocation = () => {
       });
     }
 
+    // Get current position
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   }, []);
 

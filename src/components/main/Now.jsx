@@ -79,7 +79,7 @@ const Now = ({ currentWeather }) => {
             {cityData[0]?.EnglishName}, {cityData[0]?.Country.EnglishName}
           </span>
           <BookmarkIcon
-            className={`w-5 h-5 nav-btn ml-auto ${
+            className={`w-5 h-5 reg-btn ml-auto ${
               isBookmarked ? "text-red-500" : ""
             }`}
             onClick={handleBookmarkClick}

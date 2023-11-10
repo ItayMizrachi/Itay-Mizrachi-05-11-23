@@ -1,16 +1,22 @@
-import { Bars3Icon, BookmarkIcon, HomeIcon } from "@heroicons/react/24/solid";
+import {
+  Bars3Icon,
+  BookmarkIcon,
+  HomeIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/solid";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import useLocationLogic from "../../../hooks/useLocationLogic";
 
 const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
-    const drawerToggleRef = useRef(null);
+  const { handleLocationClick } = useLocationLogic();
+  const drawerToggleRef = useRef(null);
 
-    const closeDrawer = () => {
-      if (drawerToggleRef.current) {
-        drawerToggleRef.current.click();
-      }
-    };
-  
+  const closeDrawer = () => {
+    if (drawerToggleRef.current) {
+      drawerToggleRef.current.click();
+    }
+  };
 
   return (
     <div className="drawer drawer-end lg:hidden">
@@ -26,7 +32,7 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul  className="p-4 w-80 min-h-full bg-base-200 ">
+        <ul className="p-4 w-80 min-h-full bg-base-200 ">
           {/* Sidebar content here */}
           <li onClick={() => closeDrawer()} className="drawer-btn">
             <Link to={"/"}>
@@ -38,17 +44,25 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
               </div>
             </Link>
           </li>
+        
           <li onClick={() => closeDrawer()} className="drawer-btn">
             <Link to={"/favs"}>
               <div className="flex justify-between">
                 <div>Favorites</div>
                 <div>
-                  <BookmarkIcon className="w-5 h-5 text-red-500" />
+                  <BookmarkIcon className="w-5 h-5 " />
                 </div>
               </div>
             </Link>
           </li>
-
+          <li onClick={handleLocationClick} className="drawer-btn cursor-pointer">
+            <div className="flex justify-between">
+              <div>My Location</div>
+              <div>
+                <MapPinIcon className="w-5 h-5 text-red-500" />
+              </div>
+            </div>
+          </li>
           <li>
             <select
               className="select font-semibold text-base w-full hover:bg-base-content/10 focus:bg-base-content/10 focus:border-none focus:outline-none"
