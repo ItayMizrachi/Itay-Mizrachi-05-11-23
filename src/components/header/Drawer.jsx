@@ -64,9 +64,6 @@ const Drawer = ({ selectedTheme, handleThemeChange }) => {
               </div>
             </div>
           </li>
-            <li className="my-2">
-              <Search />
-            </li>
           <li>
             <ThemeSelect
               handleThemeChange={handleThemeChange}

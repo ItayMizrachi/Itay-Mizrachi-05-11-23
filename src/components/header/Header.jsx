@@ -15,9 +15,9 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
       data-theme={selectedTheme}
       className=" bg-base-200 sticky top-0 w-full border-b border-base-300"
     >
-      <div className="h-20  grid grid-cols-2 md:grid-cols-3 items-center my-container  mx-auto px-4 ">
+      <div className="h-20 grid grid-cols-2 sm:grid-cols-3 items-center my-container  mx-auto px-4 ">
         {/* Left */}
-        <div className="w-48 ">
+        <div className="md:w-48 w-44 ">
           <img
             className="w-full h-full object-contain"
             src="/images/logo.png"
@@ -27,7 +27,7 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
         {/* Left */}
 
         {/* Middle */}
-        <div className="hidden md:block">
+        <div className="hidden sm:block">
           <Search />
         </div>
         {/* Middle */}

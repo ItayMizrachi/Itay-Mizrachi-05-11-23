@@ -3,13 +3,14 @@ import { setCityData, setCityError } from "../../features/cities/citySlice";
 import { useLocation } from "react-router-dom";
 import useWeatherApi from "../../../hooks/useWeatherApi";
 import useSearchCity from "../../../hooks/useSearchCity";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Search = () => {
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const location = useLocation();
   const city = location.pathname.substring(1); // remove the leading slash
   const dispatch = useDispatch();
-  const { loadingWeather, fetchCity } = useWeatherApi();
+  const { fetchCity } = useWeatherApi();
   const { searchCity, setSearchCity, search, handleKeyPress, suggestions } =
     useSearchCity(fetchCity, dispatch);
 
@@ -23,7 +24,6 @@ const Search = () => {
     const fetchInitialCity = async () => {
       try {
         if (!city) {
-          // Only fetch initial city data if there's no city in the URL
           const data = await fetchCity("Tel Aviv");
           dispatch(setCityData(data));
         }
@@ -37,7 +37,7 @@ const Search = () => {
 
   return (
     <form
-      className="flex-grow"
+      className="flex mx-auto justify-center"
       onSubmit={(e) => {
         e.preventDefault();
         search(searchCity);
@@ -47,19 +47,22 @@ const Search = () => {
         <input
           type="text"
           placeholder="Search City.."
-          className="input w-full max-w-xs border border-base-300 pl-8 pr-10"
+          className="input w-full  border border-base-300 pl-8 pr-10"
           value={searchCity}
           onChange={(e) => setSearchCity(e.target.value)}
           onKeyDown={handleKeyPress}
+          onFocus={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
         />
-        {suggestions.length > 0 && (
-          <div className="absolute w-full max-w-xs max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-base-content/80 bg-base-200 border border-base-300 rounded-md z-10">
+        {suggestions.length > 0 && isInputFocused && (
+          <div className="absolute w-full max-w-xs max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-base-content/80 bg-base-100 border border-base-300 rounded-md z-10">
             {suggestions.map((suggestion) => (
               <div
                 key={suggestion.Key}
-                onClick={() => {
+                onMouseDown={() => {
                   setSearchCity(suggestion?.LocalizedName);
                   search(suggestion?.LocalizedName);
+                  setIsInputFocused(false);
                 }}
                 className="px-3 py-2 cursor-pointer hover:bg-base-content/5"
               >

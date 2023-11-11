@@ -47,7 +47,7 @@ const Main = () => {
     <main className="grid grid-cols-1 lg:grid-cols-10 my-8">
       <section className="col-span-full lg:col-span-3 ">
         <Now currentWeather={currentWeather} />
-        <h2 className="font-semibold text-xl my-4">5 Days Forecast</h2>
+        <h2 className="font-semibold text-xl ml-2 my-4">5 Days Forecast</h2>
         <div className="bg-base-200 rounded-xl shadow-md border border-base-300">
           {forecast &&
             forecast.DailyForecasts.map((day, index) => (
