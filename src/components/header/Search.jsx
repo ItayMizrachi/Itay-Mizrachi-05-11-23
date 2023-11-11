@@ -4,13 +4,17 @@ import { useLocation } from "react-router-dom";
 import useWeatherApi from "../../../hooks/useWeatherApi";
 import useSearchCity from "../../../hooks/useSearchCity";
 import { useEffect, useState } from "react";
+import {
+  MagnifyingGlassCircleIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/solid";
 
 const Search = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const location = useLocation();
   const city = location.pathname.substring(1); // remove the leading slash
   const dispatch = useDispatch();
-  const { fetchCity } = useWeatherApi();
+  const { fetchCity, loadingWeather } = useWeatherApi();
   const { searchCity, setSearchCity, search, handleKeyPress, suggestions } =
     useSearchCity(fetchCity, dispatch);
 
@@ -47,13 +51,19 @@ const Search = () => {
         <input
           type="text"
           placeholder="Search City.."
-          className="input w-full  border border-base-300 pl-8 pr-10"
+          className="input w-full border border-base-300 pl-8 pr-10"
           value={searchCity}
           onChange={(e) => setSearchCity(e.target.value)}
           onKeyDown={handleKeyPress}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
         />
+        {loadingWeather ? (
+          <span className="loading loading-spinner loading-sm  absolute top-1/2 right-3 -translate-y-1/2"></span>
+        ) : (
+          <MagnifyingGlassIcon className="absolute text-base-content/60 top-1/2 right-3 transform -translate-y-1/2 w-5 h-5 " />
+        )}
+
         {suggestions.length > 0 && isInputFocused && (
           <div className="absolute w-full max-w-xs max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-base-content/80 bg-base-100 border border-base-300 rounded-md z-10">
             {suggestions.map((suggestion) => (
