@@ -13,7 +13,7 @@ const useLocationLogic = () => {
   const fetchLocationData = async (lat, lon) => {
     try {
       const response = await fetch(
-        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${
+        `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${
           import.meta.env.VITE_APIKEY3
         }&q=${lat},${lon}`
       );

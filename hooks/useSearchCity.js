@@ -31,7 +31,7 @@ const useSearchCity = (fetchCity, dispatch) => {
   const fetchSuggestions = debounce(async (query) => {
     try {
       const response = await axios.get(
-        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${import.meta.env.VITE_APIKEY3}&q=${query}`
+        `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${import.meta.env.VITE_APIKEY3}&q=${query}`
       );
       setSuggestions(response.data);
     } catch (error) {

@@ -58,7 +58,7 @@ const Now = ({ currentWeather }) => {
         <div className="w-16 h-16">
           <img
             className="w-full h-full object-cover rounded-full"
-            src={`http://developer.accuweather.com/sites/default/files/${
+            src={`https://developer.accuweather.com/sites/default/files/${
               currentWeather?.WeatherIcon < 10 ? "0" : ""
             }${currentWeather?.WeatherIcon}-s.png`}
             alt="Weather icon"

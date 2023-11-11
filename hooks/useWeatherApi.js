@@ -10,7 +10,7 @@ const useWeatherApi = () => {
   const fetchCity = async (city) => {
     try {
       const response = await axios.get(
-        `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${import.meta.env.VITE_APIKEY3}&q=${city}`
+        `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${import.meta.env.VITE_APIKEY3}&q=${city}`
       );
       return response.data;
     } catch (error) {
@@ -22,7 +22,7 @@ const useWeatherApi = () => {
     setLoadingWeather(true)
     try {
       const response = await axios.get(
-        `http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
+        `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
       );
       setCurrentWeather(response.data[0]);
       setLoadingWeather(false);
@@ -35,7 +35,7 @@ const useWeatherApi = () => {
   const fetchForecast = async (cityKey) => {
     try {
       const response = await axios.get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
+        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
       );
       setForecast(response.data);
     } catch (error) {
@@ -46,7 +46,7 @@ const useWeatherApi = () => {
   const fetchHourlyData = async (cityKey) => {
     try {
       const response = await axios.get(
-        `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
+        `https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
       );
       setHourlyData(response.data);
     } catch (error) {
