@@ -13,7 +13,7 @@ const LaterToday = ({ hourlyData }) => {
                 <div className="w-16 h-16 mx-auto">
                   <img
                     className="w-full h-full object-cover"
-                    src={`http://developer.accuweather.com/sites/default/files/${
+                    src={`https://developer.accuweather.com/sites/default/files/${
                       item.WeatherIcon < 10 ? "0" : ""
                     }${item.WeatherIcon}-s.png`}
                   />

@@ -12,7 +12,7 @@ const Forecast = ({ day, index }) => {
         <div className="w-8 h-8 mr-1">
           <img
             className="w-full h-full object-cover"
-            src={`http://developer.accuweather.com/sites/default/files/${
+            src={`https://developer.accuweather.com/sites/default/files/${
               day.Day.Icon < 10 ? "0" : ""
             }${day.Day.Icon}-s.png`}
             alt="Weather icon"
