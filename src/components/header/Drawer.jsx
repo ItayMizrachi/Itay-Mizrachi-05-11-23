@@ -7,6 +7,7 @@ import {
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import useLocationLogic from "../../../hooks/useLocationLogic";
+import Search from "./Search";
 
 const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
   const { handleLocationClick } = useLocationLogic();
@@ -64,6 +65,9 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
             </div>
           </li>
           <li>
+            <li className="my-2">
+              <Search/>
+            </li>
             <select
               className="select font-semibold text-base w-full hover:bg-base-content/10 focus:bg-base-content/10 focus:border-none focus:outline-none"
               value={selectedTheme}

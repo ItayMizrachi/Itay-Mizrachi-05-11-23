@@ -1,4 +1,3 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DeleteFavModal from "../components/modals/DeleteFavModal";
@@ -42,10 +41,10 @@ const Favs = () => {
                 </div>
                 <div className="card-body">
                   <Link
-                    to={"/" + city.EnglishName}
+                    to={"/" + city?.EnglishName}
                     className="font-semibold  text-lg mx-auto cursor-pointer"
                   >
-                    {city.EnglishName}
+                    {city?.EnglishName}
                   </Link>
                   <p className="font-semibold text-2xl mx-auto">
                     {Math.round(city.weather?.Temperature?.Metric?.Value)}°C

@@ -17,13 +17,19 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
     >
       <div className="h-20  grid grid-cols-2 md:grid-cols-3 items-center my-container  mx-auto px-4 ">
         {/* Left */}
-        <div className="font-semibold text-sm md:text-lg lg:text-xl hidden md:block">
-          Weather App
+        <div className="w-48 ">
+          <img
+            className="w-full h-full object-contain"
+            src="/images/logo.png"
+            alt="logo"
+          />
         </div>
         {/* Left */}
 
         {/* Middle */}
-        <Search />
+        <div className="hidden md:block">
+          <Search />
+        </div>
         {/* Middle */}
 
         {/* Right LG SCREEN*/}

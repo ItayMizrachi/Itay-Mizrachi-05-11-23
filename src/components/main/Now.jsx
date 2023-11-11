@@ -17,32 +17,38 @@ const Now = ({ currentWeather }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [savedCities, setSavedCities] = useLocalStorage("cities", []);
 
-    // Check if the current city is in the saved cities in local storage
-    useEffect(() => {
-      setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
-    }, [cityData, savedCities]);
-  
-    // Handle bookmark click - add/remove city from saved cities in local storage
-    const handleBookmarkClick = () => {
-      if (isBookmarked) {
-        const newSavedCities = savedCities.filter(
-          (city) => city.Key !== cityData[0]?.Key
-        );
-        setSavedCities(newSavedCities);
-      } else {
-        setSavedCities([...savedCities, { ...cityData[0], weather: currentWeather }]);
-      }
-      setIsBookmarked(!isBookmarked);
-    };
+  // Check if the current city is in the saved cities in local storage
+  useEffect(() => {
+    setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
+  }, [cityData, savedCities]);
 
-   return (
-    <div className="grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md">
+  // Handle bookmark click - add/remove city from saved cities in local storage
+  const handleBookmarkClick = () => {
+    if (isBookmarked) {
+      const newSavedCities = savedCities.filter(
+        (city) => city.Key !== cityData[0]?.Key
+      );
+      setSavedCities(newSavedCities);
+    } else {
+      setSavedCities([
+        ...savedCities,
+        { ...cityData[0], weather: currentWeather },
+      ]);
+    }
+    setIsBookmarked(!isBookmarked);
+  };
+
+  return (
+    <div className="grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md max-w-md text-base-content">
       <div className="flex justify-between items-center">
-        <p className="font-semibold text-xl"> {cityData[0]?.EnglishName}</p>
+        <h2 className="font-semibold text-xl text-primary">
+          {" "}
+          {cityData[0]?.EnglishName}
+        </h2>
       </div>
       <div className="flex justify-between border-b border-base-100 pb-3">
         <div className="mt-1">
-          <p className="text-4xl font-semibold mb-2">
+          <p className="text-4xl font-semibold mb-2 text-secondary">
             {Math.round(currentWeather?.Temperature?.Metric?.Value)}°
             {currentWeather?.Temperature?.Metric?.Unit}
           </p>
@@ -64,13 +70,13 @@ const Now = ({ currentWeather }) => {
           <CalendarDaysIcon className="w-5 h-5 mr-2" />
           <span>
             {" "}
-            {new Date(currentWeather?.LocalObservationDateTime).toLocaleDateString(
-              undefined,
-              {
-                day: "2-digit",
-                month: "2-digit",
-              } 
-            )} - Now
+            {new Date(
+              currentWeather?.LocalObservationDateTime
+            ).toLocaleDateString(undefined, {
+              day: "2-digit",
+              month: "2-digit",
+            })}
+            <span> - Now</span>
           </span>
         </div>
         <div className="flex items-center">

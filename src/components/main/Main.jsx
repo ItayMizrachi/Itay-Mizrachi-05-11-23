@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
 import Forecast from "./Forecast";
@@ -44,22 +44,22 @@ const Main = () => {
   }
 
   return (
-    <main className="grid md:grid-cols-10 my-8">
-      <section className="col-span-full md:col-span-3 ">
+    <main className="grid grid-cols-1 lg:grid-cols-10 my-8">
+      <section className="col-span-full lg:col-span-3 ">
         <Now currentWeather={currentWeather} />
         <h2 className="font-semibold text-xl my-4">5 Days Forecast</h2>
         <div className="bg-base-200 rounded-xl shadow-md border border-base-300">
           {forecast &&
             forecast.DailyForecasts.map((day, index) => (
-              <div key={index} className="">
-                <Forecast day={day} />
+              <div key={index}>
+                <Forecast day={day} index={index} />
               </div>
             ))}
         </div>
       </section>
-      <section className="col-span-full md:col-span-7 md:ml-8 mt-8 md:mt-0 ">
+      <section className="col-span-full lg:col-span-7 lg:ml-8 mt-8 lg:mt-0">
         <Map />
-        <LaterToday hourlyData={hourlyData} />
+       <LaterToday hourlyData={hourlyData}/>
       </section>
     </main>
   );

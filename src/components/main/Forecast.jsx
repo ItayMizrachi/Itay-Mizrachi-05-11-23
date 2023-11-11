@@ -1,9 +1,13 @@
-const Forecast = ({ day }) => {
+const Forecast = ({ day, index }) => {
   const fahrenheit = day.Temperature.Maximum.Value;
   const celsius = ((fahrenheit - 32) * 5) / 9;
 
   return (
-    <div className="p-3 px-4 flex justify-between hover:bg-base-100/40">
+    <div
+    className={`p-3 px-4 flex justify-between hover:bg-base-content/5 ${
+      index === 0 ? "rounded-t-lg" : ""
+    } ${index === 4 ? "rounded-b-lg" : ""}`}
+  >
       <div className="flex">
         <div className="w-8 h-8 mr-1">
           <img
@@ -23,9 +27,6 @@ const Forecast = ({ day }) => {
           month: "2-digit",
         })}
       </p>
-      {/* <p>
-        {day.Temperature.Maximum.Value}°{day.Temperature.Maximum.Unit}
-      </p> */}
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Map = () => {
   }
   const position = cityData[0]?.GeoPosition
     ? [cityData[0].GeoPosition.Latitude, cityData[0].GeoPosition.Longitude]
-    : [32.0853, 34.7818];
+    : [32.0853, 34.7818]; 
 
   const customIcon = new Icon({
     iconUrl: customIconUrl,
