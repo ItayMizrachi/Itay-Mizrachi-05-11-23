@@ -45,7 +45,7 @@ const Drawer = ({ selectedTheme, handleThemeChange }) => {
           <li onClick={closeDrawer} className="drawer-btn">
             <Link to={"/favs"}>
               <div className="flex justify-between">
-                <div>Favorites</div>
+                <div>Favorite Cities</div>
                 <div>
                   <BookmarkIcon className="w-5 h-5 " />
                 </div>

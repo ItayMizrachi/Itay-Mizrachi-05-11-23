@@ -4,10 +4,7 @@ import { useLocation } from "react-router-dom";
 import useWeatherApi from "../../../hooks/useWeatherApi";
 import useSearchCity from "../../../hooks/useSearchCity";
 import { useEffect, useState } from "react";
-import {
-  MagnifyingGlassCircleIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 const Search = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -17,7 +14,6 @@ const Search = () => {
   const { fetchCity, loadingWeather } = useWeatherApi();
   const { searchCity, setSearchCity, search, handleKeyPress, suggestions } =
     useSearchCity(fetchCity, dispatch);
-    console.log(loadingWeather);
 
   useEffect(() => {
     if (city) {
