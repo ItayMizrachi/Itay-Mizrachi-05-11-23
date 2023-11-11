@@ -10,10 +10,8 @@ const Search = () => {
   const city = location.pathname.substring(1); // remove the leading slash
   const dispatch = useDispatch();
   const { loadingWeather, fetchCity } = useWeatherApi();
-  const { searchCity, setSearchCity, search, handleKeyPress } = useSearchCity(
-    fetchCity,
-    dispatch
-  );
+  const { searchCity, setSearchCity, search, handleKeyPress, suggestions } =
+    useSearchCity(fetchCity, dispatch);
 
   useEffect(() => {
     if (city) {
@@ -49,11 +47,27 @@ const Search = () => {
         <input
           type="text"
           placeholder="Search City.."
-          className="input w-full max-w-xs border border-base-300 pl-8 pr-10" // Add right padding to prevent text from overlapping with the spinner
+          className="input w-full max-w-xs border border-base-300 pl-8 pr-10"
           value={searchCity}
           onChange={(e) => setSearchCity(e.target.value)}
           onKeyDown={handleKeyPress}
         />
+        {suggestions.length > 0 && (
+          <div className="absolute w-full max-w-xs max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-base-content/80 bg-base-200 border border-base-300 rounded-md z-10">
+            {suggestions.map((suggestion) => (
+              <div
+                key={suggestion.Key}
+                onClick={() => {
+                  setSearchCity(suggestion?.LocalizedName);
+                  search(suggestion?.LocalizedName);
+                }}
+                className="px-3 py-2 cursor-pointer hover:bg-base-content/5"
+              >
+                {suggestion?.LocalizedName}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </form>
   );

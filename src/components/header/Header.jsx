@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import Drawer from "./Drawer";
 import Search from "./Search";
 import { HomeIcon, BookmarkIcon, MapPinIcon } from "@heroicons/react/24/solid";
-import themes from "../../../themes.json";
 import useLocationLogic from "../../../hooks/useLocationLogic";
+import ThemeSelect from "./ThemeSelect";
 import useThemeLogic from "../../../hooks/useThemeLogic";
 
 const Header = ({ selectedTheme, setSelectedTheme }) => {
   const { handleLocationClick } = useLocationLogic();
-  const { handleThemeChange } = useThemeLogic(selectedTheme, setSelectedTheme);
+  const { handleThemeChange } = useThemeLogic({selectedTheme, setSelectedTheme});
 
   return (
     <header
@@ -54,17 +54,10 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
               />
             </li>
             <li>
-              <select
-                className="select font-semibold text-base w-full max-w-[140px] hover:bg-base-content/10 focus:bg-base-content/10 focus:border-none focus:outline-none hidden lg:block"
-                value={selectedTheme}
-                onChange={handleThemeChange}
-              >
-                {themes.map((theme) => (
-                  <option className="bg-base-100" key={theme} value={theme}>
-                    {theme}
-                  </option>
-                ))}
-              </select>
+              <ThemeSelect
+                handleThemeChange={handleThemeChange}
+                selectedTheme={selectedTheme}
+              />
             </li>
           </ul>
         </div>
@@ -74,7 +67,6 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
         <Drawer
           handleThemeChange={handleThemeChange}
           selectedTheme={selectedTheme}
-          themes={themes}
         />
         {/* Right SM Screen */}
       </div>

@@ -1,7 +1,8 @@
 // src/hooks/useThemeLogic.js
 import { useEffect } from "react";
 
-const useThemeLogic = (selectedTheme, setSelectedTheme) => {
+const useThemeLogic = ({selectedTheme, setSelectedTheme}) => {
+ 
   useEffect(() => {
     localStorage.setItem("selectedTheme", selectedTheme);
   }, [selectedTheme]);

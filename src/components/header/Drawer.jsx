@@ -4,23 +4,20 @@ import {
   HomeIcon,
   MapPinIcon,
 } from "@heroicons/react/24/solid";
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import useLocationLogic from "../../../hooks/useLocationLogic";
 import Search from "./Search";
+import ThemeSelect from "./ThemeSelect";
 
-const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
+const Drawer = ({ selectedTheme, handleThemeChange }) => {
   const { handleLocationClick } = useLocationLogic();
-  const drawerToggleRef = useRef(null);
 
   const closeDrawer = () => {
-    if (drawerToggleRef.current) {
-      drawerToggleRef.current.click();
-    }
+    document.getElementById("my-drawer-4").checked = false;
   };
 
   return (
-    <div className="drawer drawer-end lg:hidden">
+    <div className="drawer drawer-end lg:hidden z-50">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content text-end">
         <label htmlFor="my-drawer-4" className="drawer-button btn">
@@ -35,7 +32,7 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
         ></label>
         <ul className="p-4 w-80 min-h-full bg-base-200 ">
           {/* Sidebar content here */}
-          <li onClick={() => closeDrawer()} className="drawer-btn">
+          <li onClick={closeDrawer} className="drawer-btn">
             <Link to={"/"}>
               <div className="flex justify-between">
                 <div>Home</div>
@@ -45,8 +42,8 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
               </div>
             </Link>
           </li>
-        
-          <li onClick={() => closeDrawer()} className="drawer-btn">
+
+          <li onClick={closeDrawer} className="drawer-btn">
             <Link to={"/favs"}>
               <div className="flex justify-between">
                 <div>Favorites</div>
@@ -56,7 +53,10 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
               </div>
             </Link>
           </li>
-          <li onClick={handleLocationClick} className="drawer-btn cursor-pointer">
+          <li
+            onClick={handleLocationClick}
+            className="drawer-btn cursor-pointer"
+          >
             <div className="flex justify-between">
               <div>My Location</div>
               <div>
@@ -64,21 +64,14 @@ const Drawer = ({ selectedTheme, handleThemeChange, themes }) => {
               </div>
             </div>
           </li>
-          <li>
             <li className="my-2">
-              <Search/>
+              <Search />
             </li>
-            <select
-              className="select font-semibold text-base w-full hover:bg-base-content/10 focus:bg-base-content/10 focus:border-none focus:outline-none"
-              value={selectedTheme}
-              onChange={handleThemeChange}
-            >
-              {themes.map((theme) => (
-                <option className="bg-base-100" key={theme} value={theme}>
-                  {theme}
-                </option>
-              ))}
-            </select>
+          <li>
+            <ThemeSelect
+              handleThemeChange={handleThemeChange}
+              selectedTheme={selectedTheme}
+            />
           </li>
         </ul>
       </div>

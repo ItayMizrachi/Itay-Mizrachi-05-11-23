@@ -4,7 +4,6 @@ import DeleteFavModal from "../components/modals/DeleteFavModal";
 
 const Favs = () => {
   const [savedCities, setSavedCities] = useLocalStorage("cities", []);
-  console.log(savedCities);
 
   // Function to remove a city from the saved cities
   const removeFromFavorites = (cityKey) => {

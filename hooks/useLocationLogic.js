@@ -40,11 +40,12 @@ const useLocationLogic = () => {
         if (JSON.stringify(data) !== JSON.stringify(cityData)) {
           dispatch(setCityData(data));
         }
-        nav("/" + data.EnglishName); 
+        nav("/" + data.EnglishName);
       } catch (error) {
         console.error("Error fetching location data:", error);
       }
     }
+    document.getElementById("my-drawer-4").checked = false;
   };
 
   return { handleLocationClick };
