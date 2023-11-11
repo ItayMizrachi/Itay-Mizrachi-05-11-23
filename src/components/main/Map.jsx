@@ -2,7 +2,6 @@ import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon, divIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import customIconUrl from "../../../public/images/pin-icon.png";
 import "leaflet/dist/leaflet.css";
 import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
@@ -15,7 +14,9 @@ const Map = () => {
   }
   const position = cityData[0]?.GeoPosition
     ? [cityData[0].GeoPosition.Latitude, cityData[0].GeoPosition.Longitude]
-    : [32.0853, 34.7818]; 
+    : [32.0853, 34.7818];
+
+  const customIconUrl = "/images/pin-icon.png";
 
   const customIcon = new Icon({
     iconUrl: customIconUrl,
