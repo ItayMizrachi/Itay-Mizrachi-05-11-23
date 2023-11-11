@@ -10,7 +10,6 @@ const Search = () => {
   const city = location.pathname.substring(1); // remove the leading slash
   const dispatch = useDispatch();
   const { loadingWeather, fetchCity } = useWeatherApi();
-  console.log(loadingWeather);
   const { searchCity, setSearchCity, search, handleKeyPress } = useSearchCity(
     fetchCity,
     dispatch

@@ -14,7 +14,7 @@ const Favs = () => {
   };
 
   return (
-    <div className="my-container mx-auto">
+    <div className="my-container mx-auto my-8">
       <h1 className="font-semibold text-3xl my-4 ml-6 md:ml-16">
         Saved Cities
       </h1>

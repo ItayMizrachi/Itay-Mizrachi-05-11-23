@@ -13,8 +13,9 @@ const Map = () => {
   if (!Array.isArray(cityData)) {
     cityData = [cityData];
   }
-  console.log(cityData);
-  const position = cityData[0]?.GeoPosition ? [cityData[0].GeoPosition.Latitude, cityData[0].GeoPosition.Longitude] : [51.505, -0.09];
+  const position = cityData[0]?.GeoPosition
+    ? [cityData[0].GeoPosition.Latitude, cityData[0].GeoPosition.Longitude]
+    : [32.0853, 34.7818];
 
   const customIcon = new Icon({
     iconUrl: customIconUrl,
@@ -31,7 +32,7 @@ const Map = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <MapContainer key={position.toString()} center={position} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -43,11 +44,10 @@ const Map = () => {
           iconCreateFunction={createClusterCustomIcon}
         >
           {/* Create a single marker */}
-          <Marker 
-            position={position} 
-            icon={customIcon}
-          >
-            <Popup>{cityData[0]?.EnglishName},{cityData[0].Country.EnglishName}</Popup>
+          <Marker position={position} icon={customIcon}>
+            <Popup>
+              {cityData[0]?.EnglishName},{cityData[0]?.Country?.EnglishName}
+            </Popup>
           </Marker>
         </MarkerClusterGroup>
       </MapContainer>

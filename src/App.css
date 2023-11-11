@@ -1,7 +1,7 @@
 /* height of the container */
 .leaflet-container {
     height: 300px;
-    width: 96%;
+    width: 100%;
     border-radius: 16px;
     margin: 0 auto;
   }
@@ -19,3 +19,6 @@
     box-shadow: 0 0 0px 5px #fff;
   }
   
+  header {
+    z-index: 9999 !important;
+  }
