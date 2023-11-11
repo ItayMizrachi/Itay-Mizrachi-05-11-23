@@ -6,7 +6,6 @@ import {
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import useLocationLogic from "../../../hooks/useLocationLogic";
-import Search from "./Search";
 import ThemeSelect from "./ThemeSelect";
 
 const Drawer = ({ selectedTheme, handleThemeChange }) => {

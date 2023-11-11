@@ -9,25 +9,25 @@ const useWeatherApi = () => {
 
   const fetchCity = async (city) => {
     try {
+      setLoadingWeather(true)
       const response = await axios.get(
         `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${import.meta.env.VITE_APIKEY3}&q=${city}`
       );
+      setLoadingWeather(false);
       return response.data;
     } catch (error) {
+      setLoadingWeather(false);
       throw error;
     }
   };
 
   const fetchWeatherData = async (cityKey) => {
-    setLoadingWeather(true)
     try {
       const response = await axios.get(
         `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
       );
       setCurrentWeather(response.data[0]);
-      setLoadingWeather(false);
     } catch (error) {
-      setLoadingWeather(false);
       throw error;
     }
   };

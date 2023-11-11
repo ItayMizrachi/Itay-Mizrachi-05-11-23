@@ -17,6 +17,7 @@ const Search = () => {
   const { fetchCity, loadingWeather } = useWeatherApi();
   const { searchCity, setSearchCity, search, handleKeyPress, suggestions } =
     useSearchCity(fetchCity, dispatch);
+    console.log(loadingWeather);
 
   useEffect(() => {
     if (city) {
