@@ -12,7 +12,7 @@ const Search = () => {
   const city = location.pathname.substring(1); // remove the leading slash
   const dispatch = useDispatch();
   const { fetchCity, loadingWeather } = useWeatherApi();
-  const { searchCity, setSearchCity, search, handleKeyPress, suggestions } =
+  const { searchCity, setSearchCity, search, handleKeyPress, suggestions, handleInputChange, errorMessage } =
     useSearchCity(fetchCity, dispatch);
 
   useEffect(() => {
@@ -44,17 +44,22 @@ const Search = () => {
         search(searchCity);
       }}
     >
-      <div className="relative">
-        <input
-          type="text"
-          placeholder="Search City.."
-          className="input w-full border border-base-300 pr-10"
-          value={searchCity}
-          onChange={(e) => setSearchCity(e.target.value)}
-          onKeyDown={handleKeyPress}
-          onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setIsInputFocused(false)}
-        />
+     <div className="relative ">
+        <div className="flex flex-col">
+          <input
+            type="text"
+            placeholder="Search City.."
+            className="input w-full border border-base-300 pr-10"
+            value={searchCity}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyPress}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
+          />
+          {errorMessage && (
+            <div className="text-red-500 bg-gray-100 p-2 top-14 z-10 rounded-md absolute">{errorMessage}</div>
+          )}
+        </div>
         {loadingWeather ? (
           <span className="loading loading-spinner loading-sm  absolute top-1/2 right-3 -translate-y-1/2"></span>
         ) : (

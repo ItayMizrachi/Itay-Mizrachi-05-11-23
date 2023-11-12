@@ -8,6 +8,7 @@ const useSearchCity = (fetchCity, dispatch) => {
   const [searchCity, setSearchCity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const nav = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const search = async (cityName) => {
     try {
@@ -42,13 +43,23 @@ const useSearchCity = (fetchCity, dispatch) => {
   useEffect(() => {
     if (searchCity.length > 2) {
       fetchSuggestions(searchCity);
-      console.log(suggestions);
     } else {
       setSuggestions([]);
     }
   }, [searchCity]);
 
-  return { searchCity, setSearchCity, search, handleKeyPress, suggestions };
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    // Check if the value contains only English letters and spaces
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setSearchCity(value);
+      setErrorMessage(""); // Clear the error message
+    } else {
+      setErrorMessage("Please enter only English letters");
+    }
+  };
+
+  return { searchCity, setSearchCity, search, handleKeyPress, suggestions, handleInputChange, errorMessage };
 };
 
 export default useSearchCity;
