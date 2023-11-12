@@ -26,13 +26,11 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
           />
             </Link>
         </div>
-        {/* Left */}
 
         {/* Middle */}
         <div className="hidden sm:block">
           <Search />
         </div>
-        {/* Middle */}
 
         {/* Right LG SCREEN*/}
         <div className="hidden lg:flex ml-auto">
@@ -63,14 +61,12 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
             </li>
           </ul>
         </div>
-        {/* Right LG SCREEN */}
 
         {/* Right SM Screen */}
         <Drawer
           handleThemeChange={handleThemeChange}
           selectedTheme={selectedTheme}
         />
-        {/* Right SM Screen */}
       </div>
     </header>
   );

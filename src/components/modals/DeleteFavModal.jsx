@@ -6,11 +6,11 @@ const DeleteFavModal = ({ cityToDelete, removeFromFavorites }) => {
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <button
-        className=""
-        onClick={() => document.getElementById(modalId).showModal()}
-      >
-        <EllipsisHorizontalIcon    onClick={() => document.getElementById(modalId).showModal()} className="w-7 h-7 absolute top-2 right-2 cursor-pointer ease-out hover:text-gray-400 transform active:scale-90 transition-colors duration-200" />
+      <button onClick={() => document.getElementById(modalId).showModal()}>
+        <EllipsisHorizontalIcon
+          onClick={() => document.getElementById(modalId).showModal()}
+          className="w-7 h-7 absolute top-2 right-2 cursor-pointer ease-out hover:text-gray-400 transform active:scale-90 transition-colors duration-200"
+        />
       </button>
       <dialog id={modalId} className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
