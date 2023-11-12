@@ -5,6 +5,7 @@ This is a weather application built with React, Vite, Tailwind CSS, DaisyUI, Red
 ## Features
 
 - **5-Day Forecast**: The app displays a 5-day weather forecast for the selected city.
+- **12-Hour Forecast**: The app provides a 12-hour weather forecast for the selected city.
 - **Current Weather**: The app shows the current weather conditions for the selected city.
 - **Search Option**: Users can search for a city to view its weather conditions.
 - **Responsive Design**: The app is fully responsive and works well on all screen sizes.
