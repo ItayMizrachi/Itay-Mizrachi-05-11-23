@@ -4,11 +4,11 @@ const Forecast = ({ day, index }) => {
 
   return (
     <div
-    className={`p-3 px-4 flex justify-between hover:bg-base-content/5 ${
+    className={`p-3 px-4 flex justify-between items-center hover:bg-base-content/5 ${
       index === 0 ? "rounded-t-lg" : ""
     } ${index === 4 ? "rounded-b-lg" : ""}`}
   >
-      <div className="flex">
+      <div className="flex items-center">
         <div className="w-8 h-8 mr-1">
           <img
             className="w-full h-full object-cover"

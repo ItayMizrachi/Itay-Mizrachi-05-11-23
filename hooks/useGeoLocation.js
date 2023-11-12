@@ -38,7 +38,12 @@ const useGeoLocation = () => {
     }
 
     // Get current position
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    });
   }, []);
 
   return location;

@@ -34,7 +34,7 @@ const Favs = () => {
               <div className="card ">
                 <div className="w-16 h-16 mx-auto">
                   <img
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-full"
                     src={`https://developer.accuweather.com/sites/default/files/${
                       city?.weather?.WeatherIcon < 10 ? "0" : ""
                     }${city?.weather?.WeatherIcon}-s.png`}
