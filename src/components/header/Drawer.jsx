@@ -3,6 +3,7 @@ import {
   BookmarkIcon,
   HomeIcon,
   MapPinIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import useLocationLogic from "../../../hooks/useLocationLogic";
@@ -31,6 +32,14 @@ const Drawer = ({ selectedTheme, handleThemeChange }) => {
         ></label>
         <ul className="p-4 w-80 min-h-full bg-base-200 ">
           {/* Sidebar content here */}
+          <li onClick={closeDrawer} className="drawer-btn cursor-pointer">
+            <div className="flex justify-between">
+              <div>Close</div>
+              <div>
+                <XMarkIcon className="w-5 h-5" />
+              </div>
+            </div>
+          </li>
           <li onClick={closeDrawer} className="drawer-btn">
             <Link to={"/"}>
               <div className="flex justify-between">

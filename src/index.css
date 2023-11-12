@@ -3,6 +3,9 @@
 @import "tailwindcss/utilities";
 
 @layer components {
+  body {
+    @apply scrollbar-thin scrollbar-thumb-base-100 scrollbar-track-base-content/95;
+  }
   .my-container {
     @apply max-w-7xl;
   }

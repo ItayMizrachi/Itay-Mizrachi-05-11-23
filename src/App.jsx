@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div className="min-h-screen flex flex-col" data-theme={selectedTheme}>
+      <div className="min-h-screen flex flex-col scrollbar-thin scrollbar-thumb-base-content/80 scrollbar-track-base-200" data-theme={selectedTheme}>
         <BrowserRouter>
           <Header
             selectedTheme={selectedTheme}

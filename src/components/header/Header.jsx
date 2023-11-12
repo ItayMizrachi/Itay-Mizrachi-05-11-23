@@ -18,11 +18,13 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
       <div className="h-20 grid grid-cols-2 sm:grid-cols-3 items-center my-container  mx-auto px-4 ">
         {/* Left */}
         <div className="md:w-48 w-44 ">
+        <Link to={"/telaviv"}>
           <img
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain cursor-pointer"
             src="/images/logo.png"
             alt="logo"
           />
+            </Link>
         </div>
         {/* Left */}
 

@@ -39,7 +39,7 @@ const Now = ({ currentWeather }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md max-w-md text-base-content">
+    <div className="mx-auto grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md max-w-md text-base-content">
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-xl text-primary">
           {" "}
