@@ -1,8 +1,54 @@
-# React + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a weather application built with React, Vite, Tailwind CSS, DaisyUI, Redux, and Axios. It uses the AccuWeather API and Geolocation API to fetch and display weather data.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **5-Day Forecast**: The app displays a 5-day weather forecast for the selected city.
+- **Current Weather**: The app shows the current weather conditions for the selected city.
+- **Search Option**: Users can search for a city to view its weather conditions.
+- **Responsive Design**: The app is fully responsive and works well on all screen sizes.
+- **Theme Selection**: Users can choose between different themes for the app.
+- **Favorites Page**: Users can save their favorite cities and view them on a separate page.
+
+## APIs Used
+
+- **AccuWeather API**: This API is used to fetch the current weather conditions and the 5-day forecast for the selected city.
+- **Geolocation API**: This API is used to get the user's current location.
+
+## Libraries Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **Vite**: A build tool that aims to provide a faster and leaner development experience for modern web projects.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+- **DaisyUI**: A plugin for Tailwind CSS that adds beautiful UI components.
+- **Redux**: A predictable state container for JavaScript apps.
+- **Axios**: A promise-based HTTP client for the browser and Node.js.
+
+## Custom Hooks
+
+- **useWeatherApi**: This hook is used to fetch weather data from the AccuWeather API. It provides functions to fetch the current weather, 5-day forecast, and hourly data for a city.
+- **useSearchCity**: This hook is used to manage the search functionality of the app. It provides functions to search for a city, handle input changes, and fetch suggestions for the search input.
+- **useThemeLogic**: This hook is used to manage the theme selection functionality of the app. It provides a function to handle theme changes.
+- **useLocationLogic**: This hook is used to manage the location functionality of the app. It provides a function to handle location clicks.
+- **useLocalStorage**: This hook is used to manage local storage. It provides a function to set local storage.
+- **useGeoLocation**: This hook is used to get the user's geolocation.
+
+## Components
+
+- **Main**: This is the main component of the app. It fetches and displays the weather data for the selected city.
+- **Map**: This component displays a map with a marker at the selected city's location.
+- **Favs**: This component displays the user's favorite cities.
+
+## How to Run the App
+
+1. Clone the repository.
+2. Install the dependencies with `npm install`.
+3. Start the development server with `npm run dev`.
+4. Open `http://localhost:5173` in your browser.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
