@@ -7,20 +7,20 @@ import {
 import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import useTemperature from "../../../hooks/useTemperature";
 
 const Now = ({ currentWeather }) => {
   let cityData = useSelector(selectCityData);
+  const fahrenheit = currentWeather?.Temperature?.Imperial?.Value;
+  const { temperature, unit } = useTemperature(fahrenheit);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [savedCities, setSavedCities] = useLocalStorage("cities", []);
+
+
   // Ensure cityData is always an array
   if (!Array.isArray(cityData)) {
     cityData = [cityData];
   }
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [savedCities, setSavedCities] = useLocalStorage("cities", []);
-
-  // Check if the current city is in the saved cities in local storage
-  useEffect(() => {
-    setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
-  }, [cityData, savedCities]);
 
   // Handle bookmark click - add/remove city from saved cities in local storage
   const handleBookmarkClick = () => {
@@ -38,6 +38,11 @@ const Now = ({ currentWeather }) => {
     setIsBookmarked(!isBookmarked);
   };
 
+  // Check if the current city is in the saved cities in local storage
+  useEffect(() => {
+    setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
+  }, [cityData, savedCities]);
+
   return (
     <div className="mx-auto grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md max-w-md text-base-content">
       <div className="flex justify-between items-center">
@@ -49,8 +54,8 @@ const Now = ({ currentWeather }) => {
       <div className="flex justify-between border-b border-base-100 pb-3">
         <div className="mt-1">
           <p className="text-4xl font-semibold mb-2 text-secondary">
-            {Math.round(currentWeather?.Temperature?.Metric?.Value)}°
-            {currentWeather?.Temperature?.Metric?.Unit}
+            {temperature}
+            {unit}
           </p>
           <p className="font-semibold">{currentWeather?.WeatherText}</p>
         </div>

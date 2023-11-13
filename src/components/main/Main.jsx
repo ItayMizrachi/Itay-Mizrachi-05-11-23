@@ -6,6 +6,9 @@ import Now from "./Now";
 import LaterToday from "./LaterToday";
 import useWeatherApi from "../../../hooks/useWeatherApi";
 import Map from "./Map";
+import { Link } from "react-router-dom";
+import CityNotFound from "./CityNotFound";
+import ErrorMessage from "./ErrorMessage";
 
 const Main = () => {
   let cityData = useSelector(selectCityData);
@@ -22,6 +25,7 @@ const Main = () => {
     currentWeather,
     forecast,
     hourlyData,
+    error,
   } = useWeatherApi();
 
   useEffect(() => {
@@ -39,8 +43,12 @@ const Main = () => {
     }
   }, [cityData]);
 
+  if (error) {
+    return <ErrorMessage />;
+  }
+
   if (!cityData || cityData.length === 0) {
-    return <div className="p-4">City not found</div>;
+    return <CityNotFound />;
   }
 
   return (
@@ -59,7 +67,7 @@ const Main = () => {
       </section>
       <section className="col-span-full lg:col-span-7 lg:ml-8 mt-8 lg:mt-0">
         <Map />
-       <LaterToday hourlyData={hourlyData}/>
+        <LaterToday hourlyData={hourlyData} />
       </section>
     </main>
   );

@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import useLocationLogic from "../../../hooks/useLocationLogic";
 import ThemeSelect from "./ThemeSelect";
+import SwitchCtoF from "./SwitchCtoF";
 
 const Drawer = ({ selectedTheme, handleThemeChange }) => {
   const { handleLocationClick } = useLocationLogic();
@@ -69,6 +70,16 @@ const Drawer = ({ selectedTheme, handleThemeChange }) => {
               <div>My Location</div>
               <div>
                 <MapPinIcon className="w-5 h-5 text-red-500" />
+              </div>
+            </div>
+          </li>
+          <li
+            className="drawer-btn "
+          >
+            <div className="flex justify-between">
+              <div>Celsius/Fahrenheit</div>
+              <div>
+              <SwitchCtoF/>
               </div>
             </div>
           </li>

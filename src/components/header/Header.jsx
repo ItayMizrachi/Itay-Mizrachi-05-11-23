@@ -5,10 +5,21 @@ import { HomeIcon, BookmarkIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import useLocationLogic from "../../../hooks/useLocationLogic";
 import ThemeSelect from "./ThemeSelect";
 import useThemeLogic from "../../../hooks/useThemeLogic";
+import { useState } from "react";
+import Switch from "react-switch";
+import SwitchCtoF from "./SwitchCtoF";
 
 const Header = ({ selectedTheme, setSelectedTheme }) => {
   const { handleLocationClick } = useLocationLogic();
-  const { handleThemeChange } = useThemeLogic({selectedTheme, setSelectedTheme});
+  const { handleThemeChange } = useThemeLogic({
+    selectedTheme,
+    setSelectedTheme,
+  });
+  const [checked, setChecked] = useState(false);
+
+  const handleSwitchChange = (checked) => {
+    setChecked(checked);
+  };
 
   return (
     <header
@@ -18,13 +29,13 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
       <div className="h-20 grid grid-cols-2 sm:grid-cols-3 items-center my-container  mx-auto px-4 ">
         {/* Left */}
         <div className="md:w-48 w-44 ">
-        <Link to={"/telaviv"}>
-          <img
-            className="w-full h-full object-contain cursor-pointer"
-            src="/images/logo.png"
-            alt="logo"
-          />
-            </Link>
+          <Link to={"/telaviv"}>
+            <img
+              className="w-full h-full object-contain cursor-pointer"
+              src="/images/logo.png"
+              alt="logo"
+            />
+          </Link>
         </div>
 
         {/* Middle */}
@@ -52,6 +63,9 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
                 onClick={handleLocationClick}
                 className=" text-red-500 nav-btn"
               />
+            </li>
+            <li>
+              <SwitchCtoF />
             </li>
             <li>
               <ThemeSelect

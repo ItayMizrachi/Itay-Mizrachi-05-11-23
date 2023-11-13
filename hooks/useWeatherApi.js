@@ -6,6 +6,7 @@ const useWeatherApi = () => {
   const [forecast, setForecast] = useState();
   const [hourlyData, setHourlyData] = useState();
   const [loadingWeather, setLoadingWeather] = useState(false);
+  const [error, setError] = useState(null); // Add error state
 
   const fetchCity = async (city) => {
     try {
@@ -17,6 +18,7 @@ const useWeatherApi = () => {
       return response.data;
     } catch (error) {
       setLoadingWeather(false);
+      setError(error); 
       throw error;
     }
   };
@@ -28,6 +30,7 @@ const useWeatherApi = () => {
       );
       setCurrentWeather(response.data[0]);
     } catch (error) {
+      setError(error); 
       throw error;
     }
   };
@@ -39,6 +42,7 @@ const useWeatherApi = () => {
       );
       setForecast(response.data);
     } catch (error) {
+      setError(error); 
       throw error;
     }
   };
@@ -50,6 +54,7 @@ const useWeatherApi = () => {
       );
       setHourlyData(response.data);
     } catch (error) {
+      setError(error); 
       throw error;
     }
   };
@@ -63,6 +68,7 @@ const useWeatherApi = () => {
     forecast,
     hourlyData,
     loadingWeather,
+    error, 
   };
 };
 
