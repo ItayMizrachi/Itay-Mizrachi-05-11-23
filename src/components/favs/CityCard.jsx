@@ -1,4 +1,3 @@
-// CityCard.jsx
 import { Link } from "react-router-dom";
 import useTemperature from "../../../hooks/useTemperature";
 import DeleteFavModal from "../modals/DeleteFavModal";

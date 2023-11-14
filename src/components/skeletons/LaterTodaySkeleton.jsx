@@ -1,4 +1,5 @@
 const LaterTodaySkeleton = () => {
+  
   return (
     <div>
       <h2 className="font-semibold text-xl my-5 ml-2">Today At</h2>

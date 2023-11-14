@@ -5,8 +5,6 @@ import { HomeIcon, BookmarkIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import useLocationLogic from "../../../hooks/useLocationLogic";
 import ThemeSelect from "./ThemeSelect";
 import useThemeLogic from "../../../hooks/useThemeLogic";
-import { useState } from "react";
-import Switch from "react-switch";
 import SwitchCtoF from "./SwitchCtoF";
 
 const Header = ({ selectedTheme, setSelectedTheme }) => {
@@ -15,11 +13,6 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
     selectedTheme,
     setSelectedTheme,
   });
-  const [checked, setChecked] = useState(false);
-
-  const handleSwitchChange = (checked) => {
-    setChecked(checked);
-  };
 
   return (
     <header

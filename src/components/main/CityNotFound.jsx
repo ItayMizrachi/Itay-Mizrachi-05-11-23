@@ -1,4 +1,3 @@
-// CityNotFound.jsx
 import { Link } from 'react-router-dom';
 
 const CityNotFound = () => {

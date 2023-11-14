@@ -1,4 +1,5 @@
 const ForecastSkeleton = () => {
+  
   return (
     <div className="p-3 px-4 flex justify-between items-center">
       <div className="flex items-center">

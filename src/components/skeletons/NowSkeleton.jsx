@@ -1,6 +1,7 @@
 import { CalendarDaysIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
 const NowSkeleton = () => {
+  
   return (
     <div className="mx-auto grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md max-w-md text-base-content">
       <div className="flex justify-between items-center">

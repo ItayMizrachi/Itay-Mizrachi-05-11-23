@@ -65,7 +65,6 @@ const Main = () => {
         </div>
       </section>
       <section className="col-span-full lg:col-span-7 lg:ml-8 mt-8 lg:mt-0">
-       
         {loadingWeather ? <MapSkeleton /> :  <Map />}
         {loadingWeather ? <LaterTodaySkeleton /> : <LaterToday hourlyData={hourlyData} />}
       </section>

@@ -28,6 +28,8 @@
     "react-router-dom": "^6.18.0",
     "react-switch": "^7.0.0",
     "redux": "^4.2.1",
+    "simplebar": "^6.2.5",
+    "simplebar-react": "^3.2.4",
     "tailwind-scrollbar": "^3.0.5",
     "tailwind-scrollbar-hide": "^1.1.7"
   },

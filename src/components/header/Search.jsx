@@ -21,6 +21,7 @@ const Search = () => {
     }
   }, [city]);
 
+    // Effect for fetching initial city data
   useEffect(() => {
     const fetchInitialCity = async () => {
       try {

@@ -1,4 +1,3 @@
-// src/store/store.js
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cityReducer from "../features/cities/citySlice";
 import userLocationReducer from "../features/userLocation/userLocationSlice";
