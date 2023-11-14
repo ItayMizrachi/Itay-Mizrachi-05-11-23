@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import DeleteFavModal from "../components/modals/DeleteFavModal";
+import CityCard from "../components/favs/CityCard";
 
 const Favs = () => {
   const [savedCities, setSavedCities] = useLocalStorage("cities", []);
 
-  // Function to remove a city from the saved cities
   const removeFromFavorites = (cityKey) => {
     const newSavedCities = savedCities.filter((city) => city.Key !== cityKey);
     setSavedCities(newSavedCities);
@@ -23,36 +21,7 @@ const Favs = () => {
           </p>
         ) : (
           savedCities.map((city) => (
-            <div
-              key={city.Key}
-              className="w-52 m-1 pt-6 flex-none bg-base-200 rounded-xl relative my-3 border border-base-300 shadow-lg"
-            >
-              <DeleteFavModal
-                cityToDelete={city.Key}
-                removeFromFavorites={removeFromFavorites}
-              />
-              <div className="card ">
-                <div className="w-16 h-16 mx-auto">
-                  <img
-                    className="w-full h-full object-cover rounded-full"
-                    src={`https://developer.accuweather.com/sites/default/files/${
-                      city?.weather?.WeatherIcon < 10 ? "0" : ""
-                    }${city?.weather?.WeatherIcon}-s.png`}
-                  />
-                </div>
-                <div className="card-body">
-                  <Link
-                    to={"/" + city?.EnglishName}
-                    className="font-semibold  text-lg mx-auto cursor-pointer"
-                  >
-                    {city?.EnglishName}
-                  </Link>
-                  <p className="font-semibold text-2xl mx-auto">
-                    {Math.round(city.weather?.Temperature?.Metric?.Value)}°C
-                  </p>
-                </div>
-              </div>
-            </div>
+            <CityCard city={city} removeFromFavorites={removeFromFavorites} />
           ))
         )}
       </main>

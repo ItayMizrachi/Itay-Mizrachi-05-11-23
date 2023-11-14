@@ -1,6 +1,7 @@
+import useTemperature from "../../../hooks/useTemperature";
+
 const Forecast = ({ day, index }) => {
-  const fahrenheit = day.Temperature.Maximum.Value;
-  const celsius = ((fahrenheit - 32) * 5) / 9;
+  const { temperature, unit } = useTemperature(day.Temperature.Maximum.Value);
 
   return (
     <div
@@ -18,7 +19,7 @@ const Forecast = ({ day, index }) => {
             alt="Weather icon"
           />
         </div>
-        <p>{Math.round(celsius)}°C</p>
+        <p>{temperature}{unit}</p>
       </div>
       <p title={day.Day.IconPhrase}>{day.Day.IconPhrase.substring(0, 14)}</p>
       <p className="font-bold">
