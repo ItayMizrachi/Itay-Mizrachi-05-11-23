@@ -11,6 +11,8 @@ This is a weather application built with React, Vite, Tailwind CSS, DaisyUI, Red
 - **Responsive Design**: The app is fully responsive and works well on all screen sizes.
 - **Theme Selection**: Users can choose between different themes for the app.
 - **Favorites Page**: Users can save their favorite cities and view them on a separate page.
+- **Temperature Unit Switch**: Users can switch between Fahrenheit and Celsius temperature units.
+- **Loading Skeletons**: The app displays skeleton screens when loading data, providing a better user experience.
 
 ## APIs Used
 
@@ -35,6 +37,12 @@ This is a weather application built with React, Vite, Tailwind CSS, DaisyUI, Red
 - **useLocalStorage**: This hook is used to manage local storage. It provides a function to set local storage.
 - **useGeoLocation**: This hook is used to get the user's geolocation.
 
+## Redux Slices
+
+- **tempUnitSlice**: This slice manages the state of the temperature unit (Fahrenheit or Celsius). It includes a toggle action to switch between the two units.
+- **citySlice**: This slice manages the state of the selected city. It includes actions to set, clear, and handle errors for city data.
+- **userLocationSlice**: This slice manages the state of the user's location. It includes actions to set the location and handle location errors.
+
 ## Components
 
 - **Main**: This is the main component of the app. It fetches and displays the weather data for the selected city.
@@ -43,10 +51,11 @@ This is a weather application built with React, Vite, Tailwind CSS, DaisyUI, Red
 
 ## How to Run the App
 
-1. Clone the repository.
-2. Install the dependencies with `npm install`.
-3. Start the development server with `npm run dev`.
-4. Open `http://localhost:5173` in your browser.
+1. Sign up on the AccuWeather website and get an API key.
+2. Clone the repository.
+3. Install the dependencies with npm install.
+4. Start the development server with npm run dev.
+5. Open http://localhost:5173 in your browser.
 
 ## Contributing
 
