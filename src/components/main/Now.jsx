@@ -8,15 +8,16 @@ import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import useTemperature from "../../../hooks/useTemperature";
+import useWeatherApi from "../../../hooks/useWeatherApi";
+import NowSkeleton from "../skeletons/NowSkeleton";
 
-const Now = ({ currentWeather }) => {
+const Now = ({ currentWeather, loadingWeather }) => {
   let cityData = useSelector(selectCityData);
   const fahrenheit = currentWeather?.Temperature?.Imperial?.Value;
   const { temperature, unit } = useTemperature(fahrenheit);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [savedCities, setSavedCities] = useLocalStorage("cities", []);
-
-
+  
   // Ensure cityData is always an array
   if (!Array.isArray(cityData)) {
     cityData = [cityData];
@@ -42,6 +43,10 @@ const Now = ({ currentWeather }) => {
   useEffect(() => {
     setIsBookmarked(savedCities.some((city) => city.Key === cityData[0]?.Key));
   }, [cityData, savedCities]);
+
+  if (loadingWeather) {
+    return <NowSkeleton />; 
+  }
 
   return (
     <div className="mx-auto grid grid-cols-1 p-5 rounded-xl border border-base-300 bg-base-200 shadow-md max-w-md text-base-content">

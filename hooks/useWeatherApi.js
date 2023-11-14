@@ -25,6 +25,7 @@ const useWeatherApi = () => {
 
   const fetchWeatherData = async (cityKey) => {
     try {
+      setLoadingWeather(true); // Set loadingWeather to true
       const response = await axios.get(
         `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${import.meta.env.VITE_APIKEY3}`
       );
@@ -32,6 +33,8 @@ const useWeatherApi = () => {
     } catch (error) {
       setError(error); 
       throw error;
+    } finally {
+      setLoadingWeather(false); // Set loadingWeather back to false
     }
   };
 
