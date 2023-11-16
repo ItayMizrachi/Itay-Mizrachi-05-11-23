@@ -10,10 +10,9 @@ import useLocationLogic from "../../../hooks/useLocationLogic";
 import ThemeSelect from "./ThemeSelect";
 import SwitchCtoF from "./SwitchCtoF";
 
-const Drawer = ({ selectedTheme, handleThemeChange }) => {
+const Drawer = () => {
   const { handleLocationClick } = useLocationLogic();
-
-  const closeDrawer = () => {
+   const closeDrawer = () => {
     document.getElementById("my-drawer-4").checked = false;
   };
 
@@ -73,21 +72,16 @@ const Drawer = ({ selectedTheme, handleThemeChange }) => {
               </div>
             </div>
           </li>
-          <li
-            className="drawer-btn "
-          >
+          <li className="drawer-btn ">
             <div className="flex justify-between">
               <div>Celsius/Fahrenheit</div>
               <div>
-              <SwitchCtoF/>
+                <SwitchCtoF />
               </div>
             </div>
           </li>
           <li>
-            <ThemeSelect
-              handleThemeChange={handleThemeChange}
-              selectedTheme={selectedTheme}
-            />
+            <ThemeSelect />
           </li>
         </ul>
       </div>
