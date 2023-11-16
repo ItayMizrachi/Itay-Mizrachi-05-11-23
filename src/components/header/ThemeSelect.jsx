@@ -1,6 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import themes from "../../../themes.json";
+import { setTheme } from "../../features/theme/themeSlice";
 
-const ThemeSelect = ({ handleThemeChange, selectedTheme }) => {
+const ThemeSelect = () => {
+  const selectedTheme = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
+  const handleThemeChange = (event) => {
+    dispatch(setTheme(event.target.value));
+  };
   
   return (
     <select

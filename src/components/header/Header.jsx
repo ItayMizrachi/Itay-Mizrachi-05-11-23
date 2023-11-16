@@ -4,16 +4,13 @@ import Search from "./Search";
 import { HomeIcon, BookmarkIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import useLocationLogic from "../../../hooks/useLocationLogic";
 import ThemeSelect from "./ThemeSelect";
-import useThemeLogic from "../../../hooks/useThemeLogic";
 import SwitchCtoF from "./SwitchCtoF";
+import {  useSelector } from "react-redux";
 
-const Header = ({ selectedTheme, setSelectedTheme }) => {
+const Header = () => {
   const { handleLocationClick } = useLocationLogic();
-  const { handleThemeChange } = useThemeLogic({
-    selectedTheme,
-    setSelectedTheme,
-  });
-
+  const selectedTheme = useSelector((state) => state.theme);
+ 
   return (
     <header
       data-theme={selectedTheme}
@@ -61,19 +58,13 @@ const Header = ({ selectedTheme, setSelectedTheme }) => {
               <SwitchCtoF />
             </li>
             <li>
-              <ThemeSelect
-                handleThemeChange={handleThemeChange}
-                selectedTheme={selectedTheme}
-              />
+              <ThemeSelect />
             </li>
           </ul>
         </div>
 
         {/* Right SM Screen */}
-        <Drawer
-          handleThemeChange={handleThemeChange}
-          selectedTheme={selectedTheme}
-        />
+        <Drawer />
       </div>
     </header>
   );
