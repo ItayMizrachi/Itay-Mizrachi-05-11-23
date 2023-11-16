@@ -29,13 +29,14 @@ This is a weather application built with React, Vite, Tailwind CSS, DaisyUI, Red
 - **Axios**: A promise-based HTTP client for the browser and Node.js.
 - **Heroicons - react**: A set of high-quality SVG icons for UI development.
 - **Leaflet**: An open-source JavaScript library for mobile-friendly interactive maps.
-- **Lodash**: A modern JavaScript utility library delivering modularity, performance & extras.
+- **lodash**: A modern JavaScript utility library delivering modularity, performance & extras. In `useSearchCity.js`, lodash's `debounce` function is used to delay the `fetchSuggestions` function until after the user has stopped typing for 300 milliseconds.
+so it doesn't spam the API.
 - **react-router-dom**: DOM bindings for React Router.
 
 ## Custom Hooks
 
 - **useWeatherApi**: This hook is used to fetch weather data from the AccuWeather API. It provides functions to fetch the current weather, 5-day forecast, and hourly data for a city.
-- **useSearchCity**: This hook is used to manage the search functionality of the app. It provides functions to search for a city, handle input changes, and fetch suggestions for the search input.
+- **useSearchCity**: This hook is used to manage the search functionality of the app. It provides functions to search for a city, handle input changes, and fetch suggestions for the search input. The `fetchSuggestions` function is debounced using lodash's `debounce` function to improve performance and user experience.
 - **useThemeLogic**: This hook is used to manage the theme selection functionality of the app. It provides a function to handle theme changes.
 - **useLocationLogic**: This hook is used to manage the location functionality of the app. It provides a function to handle location clicks.
 - **useLocalStorage**: This hook is used to manage local storage. It provides a function to set local storage.
