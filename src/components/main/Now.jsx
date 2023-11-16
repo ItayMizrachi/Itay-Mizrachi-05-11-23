@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { selectCityData } from "../../features/cities/citySlice";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import useTemperature from "../../../hooks/useTemperature";
-import useWeatherApi from "../../../hooks/useWeatherApi";
 import NowSkeleton from "../skeletons/NowSkeleton";
 
 const Now = ({ currentWeather, loadingWeather }) => {

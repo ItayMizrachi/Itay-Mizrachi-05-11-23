@@ -1,4 +1,3 @@
-// src/features/tempUnit/tempUnitSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = localStorage.getItem("tempUnit") || "C";

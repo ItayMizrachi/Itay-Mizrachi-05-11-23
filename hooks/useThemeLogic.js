@@ -1,4 +1,3 @@
-// src/hooks/useThemeLogic.js
 import { useEffect } from "react";
 
 const useThemeLogic = ({selectedTheme, setSelectedTheme}) => {
